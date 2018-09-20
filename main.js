@@ -72,7 +72,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* Container holding the image and the text */\n.container {\n    position: relative;\n    text-align: center;\n    color: white;\n}\n/* Top left text */\n.top-left {\n    position: absolute;\n    top: 25px;\n    left: 50px;\n}"
+module.exports = "/* Container holding the image and the text */\n.header {\n    position: relative;\n    text-align: center;\n    color: white;\n    font-family: Sans-Serif;\n    font-size: larger;\n}\n/* Top left text */\n.top-left {\n    position: absolute;\n    top: 25px;\n    left: 50px;\n}"
 
 /***/ }),
 
@@ -83,7 +83,7 @@ module.exports = "/* Container holding the image and the text */\n.container {\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <img width=100% alt=\"Pokemon Hero Background\" src=\"assets/img/hero-background.jpg\">\n  <div class=\"top-left\">{{ title }}</div>\n</div>\n<router-outlet></router-outlet>\n\n"
+module.exports = "<div class=\"header\">\n  <img width=100% alt=\"Pokemon Hero Background\" src=\"assets/img/hero-background.jpg\">\n  <div class=\"top-left\">{{ title }}</div>\n</div>\n<router-outlet></router-outlet>\n\n"
 
 /***/ }),
 
@@ -136,12 +136,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var ngx_pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-pagination */ "./node_modules/ngx-pagination/dist/ngx-pagination.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _pokemons_pokemons_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pokemons/pokemons.component */ "./src/app/pokemons/pokemons.component.ts");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var ng2_search_filter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ng2-search-filter */ "./node_modules/ng2-search-filter/ng2-search-filter.es5.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _pokemons_pokemons_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pokemons/pokemons.component */ "./src/app/pokemons/pokemons.component.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _services_index__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./services/index */ "./src/app/services/index.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -156,26 +155,25 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
-                _pokemons_pokemons_component__WEBPACK_IMPORTED_MODULE_5__["PokemonsComponent"],
+                _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
+                _pokemons_pokemons_component__WEBPACK_IMPORTED_MODULE_4__["PokemonsComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
-                ngx_pagination__WEBPACK_IMPORTED_MODULE_3__["NgxPaginationModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClientModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
-                ng2_search_filter__WEBPACK_IMPORTED_MODULE_8__["Ng2SearchPipeModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"]
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_6__["AppRoutingModule"]
             ],
-            providers: [],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
+            providers: [
+                _services_index__WEBPACK_IMPORTED_MODULE_7__["PagerService"]
+            ],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -185,10 +183,235 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pokemon.service.ts":
-/*!************************************!*\
-  !*** ./src/app/pokemon.service.ts ***!
-  \************************************/
+/***/ "./src/app/model/pokemon.ts":
+/*!**********************************!*\
+  !*** ./src/app/model/pokemon.ts ***!
+  \**********************************/
+/*! exports provided: Pokemon */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Pokemon", function() { return Pokemon; });
+var Pokemon = /** @class */ (function () {
+    function Pokemon(url, name) {
+        // Capture the last digits of URL as Pokemon ID
+        this.idFromUrlPattern = /^.*\/(\d+)\/$/;
+        this.url = url;
+        this.name = name;
+        var parsedValue = url.replace(this.idFromUrlPattern, "$1");
+        this.id = parseInt(parsedValue);
+    }
+    return Pokemon;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pokemons/pokemons.component.css":
+/*!*************************************************!*\
+  !*** ./src/app/pokemons/pokemons.component.css ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/*PokemonComponent's private CSS styles */\n\nbody {\n  font-family: Sans-Serif;\n}\n\na {\n  cursor: pointer;\n  padding: 5px;\n  align-content: center;\n}\n\n.id {\n  color: rgb(143, 79, 79);\n}\n\n.pagination {\n  padding-top: 5px;\n  padding-left:10px;\n}\n\n.row { /* IE10 */\n    display: flex; /* IE10 */\n    flex-wrap: wrap;\n    padding: 0 4px;\n  }\n\n/* Create four equal columns that sits next to each other */\n\n.column { /* IE10 */\n    flex: 25%;\n    max-width: 25%;\n    padding: 0 4px;\n  }\n\n.column img {\n    margin-top: 8px;\n    vertical-align: middle;\n  }\n\n.centered {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n  }\n\n#search-box {\n    margin-left: 20px;\n    color: rgb(39, 39, 39);\n  }\n\n/* Responsive layout - makes a two column-layout instead of four columns */\n\n@media screen and (max-width: 800px) {\n    .column {\n        flex: 50%;\n        max-width: 50%;\n    }\n  }\n\n/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */\n\n@media screen and (max-width: 600px) {\n    .column {\n      flex: 100%;\n      max-width: 100%;\n    }\n  }\n "
+
+/***/ }),
+
+/***/ "./src/app/pokemons/pokemons.component.html":
+/*!**************************************************!*\
+  !*** ./src/app/pokemons/pokemons.component.html ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\n  <hr>\n  <div class=\"row justify-content-center\">\n        <label for=\"search-box\">Find Your Pokemon!</label>\n        <input #searchBox id=\"search-box\" [(ngModel)]=\"searchText\" (keyup)=\"search(searchBox.value)\" />     \n  </div>\n  \n  <hr>\n  <div class=\"row\">\n    <div class=\"col-12 col-md-6 col-lg-3 col-xl-3\" *ngFor=\"let pokemon of pokemons\">\n      <img src=\"../assets/img/{{pokemon.id}}.png\">\n      <div class=\"id\">#{{pokemon.id}}</div>\n      <div class=\"id\">{{pokemon.name}}</div>\n  </div>\n  <hr>\n  \n  <!-- pager -->\n\n<div class=\"container\">\n    <hr>\n    <div class=\"row justify-content-center\">\n        <ul *ngIf=\"pager.pages && pager.pages.length\" class=\"pagination\"> \n            <li [ngClass]=\"{disabled:pager.currentPage === 1}\">\n                <a (click)=\"setPage(1)\"> first </a>\n            </li>\n            <li [ngClass]=\"{disabled:pager.currentPage === 1}\">\n                <a (click)=\"setPage(pager.currentPage - 1)\"> prev </a>\n            </li>\n            <li *ngFor=\"let page of pager.pages\" [ngClass]=\"{active:pager.currentPage === page}\">\n                <a (click)=\"setPage(page)\">{{page}}</a>\n            </li>\n            <li [ngClass]=\"{disabled:pager.currentPage === pager.totalPages}\">\n                <a (click)=\"setPage(pager.currentPage + 1)\"> next </a>\n            </li>\n            <li [ngClass]=\"{disabled:pager.currentPage === pager.totalPages}\">\n                <a (click)=\"setPage(pager.totalPages)\"> last </a>\n            </li>\n        </ul>\n    </div>\n    <hr>\n</div>\n<hr>\n  "
+
+/***/ }),
+
+/***/ "./src/app/pokemons/pokemons.component.ts":
+/*!************************************************!*\
+  !*** ./src/app/pokemons/pokemons.component.ts ***!
+  \************************************************/
+/*! exports provided: PokemonsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PokemonsComponent", function() { return PokemonsComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_pokemon_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/pokemon.service */ "./src/app/services/pokemon.service.ts");
+/* harmony import */ var _services_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/index */ "./src/app/services/index.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var PokemonsComponent = /** @class */ (function () {
+    function PokemonsComponent(pokemonService, pagerService) {
+        this.pokemonService = pokemonService;
+        this.pagerService = pagerService;
+        // pager object
+        this.pager = {};
+    }
+    PokemonsComponent.prototype.ngOnInit = function () {
+        this.searchText = "";
+        this.getPokemons();
+    };
+    PokemonsComponent.prototype.getPokemons = function () {
+        var _this = this;
+        this.pokemonService.getPokemons()
+            .subscribe(function (pokemons) {
+            _this.allPokemons = pokemons;
+            _this.updateFilteredPokemons();
+            _this.setPage(1);
+        });
+    };
+    PokemonsComponent.prototype.updateFilteredPokemons = function () {
+        var _this = this;
+        this.filteredPokemons =
+            this.allPokemons
+                .filter(function (pokemon) { return pokemon.name.match(new RegExp(_this.searchText, 'i')); });
+        this.updateDisplayedPokemons();
+        this.setPage(1);
+    };
+    PokemonsComponent.prototype.updateDisplayedPokemons = function () {
+        this.pokemons = this.filteredPokemons;
+    };
+    PokemonsComponent.prototype.setPage = function (page) {
+        if (page < 1) {
+            return;
+        }
+        this.pager = this.pagerService.getPager(this.filteredPokemons.length, page);
+        this.pokemons = this.filteredPokemons.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    };
+    PokemonsComponent.prototype.search = function (keyword) {
+        this.searchText = keyword;
+        this.updateFilteredPokemons();
+        this.setPage(1);
+    };
+    PokemonsComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-pokemons',
+            template: __webpack_require__(/*! ./pokemons.component.html */ "./src/app/pokemons/pokemons.component.html"),
+            styles: [__webpack_require__(/*! ./pokemons.component.css */ "./src/app/pokemons/pokemons.component.css")]
+        }),
+        __metadata("design:paramtypes", [_services_pokemon_service__WEBPACK_IMPORTED_MODULE_1__["PokemonService"], _services_index__WEBPACK_IMPORTED_MODULE_2__["PagerService"]])
+    ], PokemonsComponent);
+    return PokemonsComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/index.ts":
+/*!***********************************!*\
+  !*** ./src/app/services/index.ts ***!
+  \***********************************/
+/*! exports provided: PagerService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _pager_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pager.service */ "./src/app/services/pager.service.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PagerService", function() { return _pager_service__WEBPACK_IMPORTED_MODULE_0__["PagerService"]; });
+
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/pager.service.ts":
+/*!*******************************************!*\
+  !*** ./src/app/services/pager.service.ts ***!
+  \*******************************************/
+/*! exports provided: PagerService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PagerService", function() { return PagerService; });
+var PagerService = /** @class */ (function () {
+    function PagerService() {
+    }
+    PagerService.prototype.getPager = function (totalItems, currentPage, pageSize) {
+        if (currentPage === void 0) { currentPage = 1; }
+        if (pageSize === void 0) { pageSize = 20; }
+        // calculate total pages
+        var totalPages = Math.ceil(totalItems / pageSize);
+        // ensure current page isn't out of range
+        if (currentPage < 1) {
+            currentPage = 1;
+        }
+        else if (currentPage > totalPages) {
+            currentPage = totalPages;
+        }
+        var startPage, endPage;
+        if (totalPages <= 5) {
+            // less than 10 total pages so show all
+            startPage = 1;
+            endPage = totalPages;
+        }
+        else {
+            // more than 10 total pages so calculate start and end pages
+            if (currentPage <= 3) {
+                startPage = 1;
+                endPage = 5;
+            }
+            else if (currentPage + 1 >= totalPages) {
+                startPage = totalPages - 4;
+                endPage = totalPages;
+            }
+            else {
+                if ((totalPages - (currentPage - 2)) === 5) {
+                    startPage = currentPage - 1;
+                    endPage = currentPage + 3;
+                }
+                else {
+                    startPage = currentPage - 2;
+                    endPage = currentPage + 2;
+                }
+            }
+        }
+        // calculate start and end item indexes
+        var startIndex = (currentPage - 1) * pageSize;
+        var endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
+        // create an array of pages to ng-repeat in the pager control
+        var pages = Array.from(Array((endPage + 1) - startPage).keys()).map(function (i) { return startPage + i; });
+        // return object with all pager properties required by the view
+        return {
+            totalItems: totalItems,
+            currentPage: currentPage,
+            pageSize: pageSize,
+            totalPages: totalPages,
+            startPage: startPage,
+            endPage: endPage,
+            startIndex: startIndex,
+            endIndex: endIndex,
+            pages: pages
+        };
+    };
+    return PagerService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/pokemon.service.ts":
+/*!*********************************************!*\
+  !*** ./src/app/services/pokemon.service.ts ***!
+  \*********************************************/
 /*! exports provided: PokemonService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -199,7 +422,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _pokemon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pokemon */ "./src/app/pokemon.ts");
+/* harmony import */ var _model_pokemon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../model/pokemon */ "./src/app/model/pokemon.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -220,7 +443,6 @@ var httpOptions = {
 var PokemonService = /** @class */ (function () {
     function PokemonService(http) {
         this.http = http;
-        // private pokemonsUrl = 'api/pokemons';
         this.pokemonsUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=151';
     }
     /** GET pokemons from the server */
@@ -228,7 +450,7 @@ var PokemonService = /** @class */ (function () {
         var convertToPokemonArray = Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (value) {
             var objList = value['results'];
             var pokemons = objList.map(function (pokemon, index) {
-                return new _pokemon__WEBPACK_IMPORTED_MODULE_4__["Pokemon"](pokemon.url, pokemon.name);
+                return new _model_pokemon__WEBPACK_IMPORTED_MODULE_4__["Pokemon"](pokemon.url, pokemon.name);
             });
             return pokemons;
         });
@@ -270,123 +492,6 @@ var PokemonService = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], PokemonService);
     return PokemonService;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/pokemon.ts":
-/*!****************************!*\
-  !*** ./src/app/pokemon.ts ***!
-  \****************************/
-/*! exports provided: Pokemon */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Pokemon", function() { return Pokemon; });
-var Pokemon = /** @class */ (function () {
-    function Pokemon(url, name) {
-        // Capture the last digits of URL as Pokemon ID
-        this.idFromUrlPattern = /^.*\/(\d+)\/$/;
-        this.url = url;
-        this.name = name;
-        var parsedValue = url.replace(this.idFromUrlPattern, "$1");
-        this.id = parseInt(parsedValue);
-    }
-    return Pokemon;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/pokemons/pokemons.component.css":
-/*!*************************************************!*\
-  !*** ./src/app/pokemons/pokemons.component.css ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/*PokemonComponent's private CSS styles */\npagination-controls {\n  padding-top: 20px;\n}\n.container {\n    position: relative;\n    text-align: center;\n}\n.row { /* IE10 */\n    display: flex; /* IE10 */\n    flex-wrap: wrap;\n    padding: 0 4px;\n  }\n/* Create four equal columns that sits next to each other */\n.column { /* IE10 */\n    flex: 25%;\n    max-width: 25%;\n    padding: 0 4px;\n  }\n.column img {\n    margin-top: 8px;\n    vertical-align: middle;\n  }\n.centered {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n  }\n#search-box {\n    margin-left: 20px;\n  }\n/* Responsive layout - makes a two column-layout instead of four columns */\n@media screen and (max-width: 800px) {\n    .column {\n        flex: 50%;\n        max-width: 50%;\n    }\n  }\n/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */\n@media screen and (max-width: 600px) {\n    .column {\n      flex: 100%;\n      max-width: 100%;\n    }\n  }\n "
-
-/***/ }),
-
-/***/ "./src/app/pokemons/pokemons.component.html":
-/*!**************************************************!*\
-  !*** ./src/app/pokemons/pokemons.component.html ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"container\">\n  <hr>\n  <div>\n      <label for=\"search-box\">Find Your Pokemon!</label>\n      <input #searchBox id=\"search-box\" [(ngModel)]=\"searchText\" (keyup)=\"search(searchBox.value)\" />     \n  </div>\n  \n  <hr>\n  <div class=\"row\">\n    <div class=\"col-12 col-md-6 col-lg-3 col-xl-3\" *ngFor=\"let pokemon of pokemons | paginate: { itemsPerPage: 20, currentPage: p }\">\n      <img src=\"../assets/img/{{pokemon.id}}.png\">\n      <div>{{pokemon.id}}</div>\n      <div>{{pokemon.name}}</div>\n  </div>\n  <hr>\n  \n  <pagination-controls (pageChange)=\"p = $event\"></pagination-controls>\n  </div>\n\n  <hr>\n  "
-
-/***/ }),
-
-/***/ "./src/app/pokemons/pokemons.component.ts":
-/*!************************************************!*\
-  !*** ./src/app/pokemons/pokemons.component.ts ***!
-  \************************************************/
-/*! exports provided: PokemonsComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PokemonsComponent", function() { return PokemonsComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _pokemon_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pokemon.service */ "./src/app/pokemon.service.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var PokemonsComponent = /** @class */ (function () {
-    function PokemonsComponent(pokemonService) {
-        this.pokemonService = pokemonService;
-    }
-    PokemonsComponent.prototype.ngOnInit = function () {
-        this.p = 1;
-        this.searchText = "";
-        this.getPokemons();
-    };
-    PokemonsComponent.prototype.getPokemons = function () {
-        var _this = this;
-        this.pokemonService.getPokemons()
-            .subscribe(function (pokemons) {
-            _this.allPokemons = pokemons;
-            _this.updateFilteredPokemons();
-        });
-    };
-    PokemonsComponent.prototype.updateFilteredPokemons = function () {
-        var _this = this;
-        this.filteredPokemons =
-            this.allPokemons
-                .filter(function (pokemon) { return pokemon.name.match(new RegExp(_this.searchText, 'i')); });
-        this.updateDisplayedPokemons();
-    };
-    PokemonsComponent.prototype.updateDisplayedPokemons = function () {
-        this.pokemons = this.filteredPokemons;
-    };
-    PokemonsComponent.prototype.search = function (keyword) {
-        this.searchText = keyword;
-        this.updateFilteredPokemons();
-    };
-    PokemonsComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-pokemons',
-            template: __webpack_require__(/*! ./pokemons.component.html */ "./src/app/pokemons/pokemons.component.html"),
-            styles: [__webpack_require__(/*! ./pokemons.component.css */ "./src/app/pokemons/pokemons.component.css")]
-        }),
-        __metadata("design:paramtypes", [_pokemon_service__WEBPACK_IMPORTED_MODULE_1__["PokemonService"]])
-    ], PokemonsComponent);
-    return PokemonsComponent;
 }());
 
 
