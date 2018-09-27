@@ -72,7 +72,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* Container holding the image and the text */\n.header {\n    position: relative;\n    text-align: center;\n    color: white;\n    font-family: Sans-Serif;\n    font-size: larger;\n}\n/* Top left text */\n.top-left {\n    position: absolute;\n    top: 25px;\n    left: 50px;\n}"
+module.exports = "/* Container holding the image and the text */\n.header {\n    position: relative;\n    top: -50%;\n    text-align: center;\n    color: white;\n\n}\n/* Top left text */\n.top-left {\n    position: absolute;\n    top: 50px;\n    left: 50px;\n    font-family: pokemon;\n    font-size: 300%;\n}"
 
 /***/ }),
 
@@ -216,7 +216,7 @@ var Pokemon = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/*PokemonComponent's private CSS styles */\n\nbody {\n  font-family: Sans-Serif;\n}\n\na {\n  cursor: pointer;\n  padding: 5px;\n  align-content: center;\n}\n\nimg {\n  display: block;\n  margin: 0 auto;\n}\n\n.id {\n  color: rgb(143, 79, 79);\n  text-align: center;\n}\n\n.pagination {\n  padding-top: 5px;\n  padding-left:10px;\n}\n\n.row { /* IE10 */\n    display: flex; /* IE10 */\n    flex-wrap: wrap;\n    padding: 0 4px;\n  }\n\n/* Create four equal columns that sits next to each other */\n\n.column { /* IE10 */\n    flex: 25%;\n    max-width: 25%;\n    padding: 0 4px;\n  }\n\n.column img {\n    margin-top: 8px;\n    vertical-align: middle;\n  }\n\n.centered {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n  }\n\n#search-box {\n    margin-left: 20px;\n    color: rgb(39, 39, 39);\n  }\n\n/* Responsive layout - makes a two column-layout instead of four columns */\n\n@media screen and (max-width: 800px) {\n    .column {\n        flex: 50%;\n        max-width: 50%;\n    }\n  }\n\n/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */\n\n@media screen and (max-width: 600px) {\n    .column {\n      flex: 100%;\n      max-width: 100%;\n    }\n  }\n "
+module.exports = "/*PokemonComponent's private CSS styles */\nbody {\n  font-family: Sans-Serif;\n}\na {\n  cursor: pointer;\n  padding: 5px;\n  align-content: center;\n}\nimg {\n  display: block;\n  margin: 0 auto;\n}\n.disabled {\n  color: lightgray;\n  cursor: pointer;\n}\n.enabled {\n  color: grey;\n  cursor: pointer;\n\n}\n.active {\n  background-color: grey;\n  color: white;\n  cursor: pointer;\n}\n.pokerow {\n\talign-items: center;\n\ttext-align: center;\n}\n.id {\n  color: rgb(143, 79, 79);\n  text-align: center;\n}\n.pagination {\n  padding-top: 5px;\n  padding-left:10px;\n}\n.row { /* IE10 */\n    display: flex; /* IE10 */\n    flex-wrap: wrap;\n    padding: 0 4px;\n  }\n/* Create four equal columns that sits next to each other */\n.column { /* IE10 */\n    flex: 25%;\n    max-width: 25%;\n    padding: 0 4px;\n  }\n.column img {\n    margin-top: 8px;\n    vertical-align: middle;\n  }\n.centered {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n  }\n#search-box {\n    margin-left: 20px;\n    color: rgb(39, 39, 39);\n  }\n/* Responsive layout - makes a two column-layout instead of four columns */\n@media screen and (max-width: 800px) {\n    .column {\n        flex: 50%;\n        max-width: 50%;\n    }\n  }\n/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */\n@media screen and (max-width: 600px) {\n    .column {\n      flex: 100%;\n      max-width: 100%;\n    }\n  }\n "
 
 /***/ }),
 
@@ -227,7 +227,7 @@ module.exports = "/*PokemonComponent's private CSS styles */\n\nbody {\n  font-f
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"body\">\n  <hr>\n  <div class=\"row justify-content-center\">\n        <label for=\"search-box\">Find Your Pokemon!</label>\n        <input #searchBox id=\"search-box\" [(ngModel)]=\"searchText\" (keyup)=\"search(searchBox.value)\" />     \n  </div>\n  \n  <hr>\n  <div class=\"row\">\n    <div class=\"col-12 col-md-6 col-lg-3 col-xl-3\" *ngFor=\"let pokemon of pokemons\">\n      <img src=\"../assets/img/{{pokemon.id}}.png\">\n      <div class=\"id\">#{{pokemon.id}}</div>\n      <div class=\"id\">{{pokemon.name}}</div>\n  </div>\n  <hr>\n  \n  <!-- pager -->\n  <div class=\"container\">\n    <hr>\n    <div class=\"row justify-content-center\">\n        <ul *ngIf=\"pager.pages && pager.pages.length\" class=\"pagination\"> \n            <li [ngClass]=\"{disabled:pager.currentPage === 1}\">\n                <a (click)=\"setPage(1)\"> first </a>\n            </li>\n            <li [ngClass]=\"{disabled:pager.currentPage === 1}\">\n                <a (click)=\"setPage(pager.currentPage - 1)\"> prev </a>\n            </li>\n            <li *ngFor=\"let page of pager.pages\" [ngClass]=\"{active:pager.currentPage === page}\">\n                <a (click)=\"setPage(page)\">{{page}}</a>\n            </li>\n            <li [ngClass]=\"{disabled:pager.currentPage === pager.totalPages}\">\n                <a (click)=\"setPage(pager.currentPage + 1)\"> next </a>\n            </li>\n            <li [ngClass]=\"{disabled:pager.currentPage === pager.totalPages}\">\n                <a (click)=\"setPage(pager.totalPages)\"> last </a>\n            </li>\n        </ul>\n    </div>\n    <hr>\n</div>\n<hr>\n  "
+module.exports = "<div class=\"body\">\n    <hr>\n    <div class=\"row justify-content-center\">\n        <label for=\"search-box\">Find Your Pokemon!</label>\n        <input #searchBox id=\"search-box\" [(ngModel)]=\"searchText\" (keyup)=\"search(searchBox.value)\" />     \n    </div>\n  \n    <hr>\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-12 col-md-6 col-xl-3\" *ngFor=\"let pokemon of pokemons\">\n                <div class=\"container\">\n                    <div class=\"row pokerow\">\n                        <div class=\"col-6 col-md-12 col-xl-12\">\n                            <img src=\"../assets/img/{{pokemon.id}}.png\" />\n                        </div>\n                        <div class=\"col-6 col-md-12 col-xl-12\">\n                            <div>#{{pokemon.id}}</div>\n                            <div>{{pokemon.name}}</div>\n                        </div>\n                        <div class=\"col-12\">\n                            <br/>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    \n    <!-- pager -->\n    <div class=\"container\">\n        <hr>\n        <div class=\"row justify-content-center\">\n            <ul *ngIf=\"pager.pages && pager.pages.length\" class=\"pagination\"> \n                <li [ngClass]=\"{disabled: isFirstPage(), enabled: !isFirstPage()}\">\n                    <a (click)=\"setPage(1)\"> first </a>\n                </li>\n                <li [ngClass]=\"{disabled: isFirstPage(), enabled: !isFirstPage()}\">\n                    <a (click)=\"setPage(pager.currentPage - 1)\"> prev </a>\n                </li>\n                <li *ngFor=\"let page of pager.pages\" \n                    [ngClass]=\"{active: isActive(page), enabled: !isActive(page)}\">\n                    \n                    <a (click)=\"setPage(page)\">{{page}}</a>\n                </li>\n                <li [ngClass]=\"{disabled: isLastPage(), enabled: !isLastPage()}\">\n                    <a (click)=\"setPage(pager.currentPage + 1)\"> next </a>\n                </li>\n                <li [ngClass]=\"{disabled: isLastPage(), enabled: !isLastPage()}\">\n                    <a (click)=\"setPage(pager.totalPages)\"> last </a>\n                </li>\n            </ul>\n        </div>\n        <hr>\n    </div>\n</div>\n  "
 
 /***/ }),
 
@@ -298,6 +298,15 @@ var PokemonsComponent = /** @class */ (function () {
         this.searchText = keyword;
         this.updateFilteredPokemons();
         this.setPage(1);
+    };
+    PokemonsComponent.prototype.isFirstPage = function () {
+        return this.pager.currentPage === 1;
+    };
+    PokemonsComponent.prototype.isLastPage = function () {
+        return this.pager.currentPage === this.pager.totalPages;
+    };
+    PokemonsComponent.prototype.isActive = function (page) {
+        return this.pager.currentPage === page;
     };
     PokemonsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -452,7 +461,7 @@ var PokemonService = /** @class */ (function () {
             var pokemons = objList.map(function (pokemon, index) {
                 return new _model_pokemon__WEBPACK_IMPORTED_MODULE_4__["Pokemon"](pokemon.url, pokemon.name);
             });
-            return pokemons;
+            return pokemons.slice(0, 151);
         });
         return convertToPokemonArray(this.http.get(this.pokemonsUrl)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError('getPokemons', []))));
