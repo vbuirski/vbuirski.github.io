@@ -72,7 +72,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* Container holding the image and the text */\n.header {\n    position: relative;\n    top: -50%;\n    text-align: center;\n    color: white;\n\n}\n/* Top left text */\n.top-left {\n    position: absolute;\n    top: 50px;\n    left: 50px;\n    font-family: pokemon;\n    font-size: 300%;\n}"
+module.exports = "/* Container holding the image and the text */\n.header {\n    position: relative;\n    text-align: center;\n    color: white;\n}\n/* Top left text */\n.top-left {\n    position: absolute;\n    top: 10px;\n    left: 10px;\n    font-family: pokemon;\n    font-size: xx-large;\n}"
 
 /***/ }),
 
